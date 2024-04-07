@@ -74,7 +74,18 @@ for div_tag in soup_2.find_all('div'):
 # flags.sort()
 
 # Deduplicate flags
-# flags = list(set(flags))
+# flags_final = list(set(flags))
 
-for flag in flags:
+flags_copy = flags.copy()
+
+# Extract numbers from flag identifiers and convert to integers
+flag_numbers = [int(flag.split('-')[1]) for flag in flags_copy]
+
+# Sort the numbers
+sorted_numbers = sorted(flag_numbers)
+
+# Reconstruct the sorted flag identifiers
+sorted_flags = [f"flag-{num}" for num in sorted_numbers]
+
+for flag in sorted_flags:
     print(flag)
